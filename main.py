@@ -5,6 +5,7 @@ from image_utils import hash_image, get_image_paths, compute_images, chunk_it
 import multiprocessing
 from argument_parser import ArgumentParser
 from log_utils import LogUtils
+from merge_utils import MergeUtils
 
 if __name__ == "__main__":
     #Init argument parser
@@ -25,8 +26,14 @@ if __name__ == "__main__":
             "short_name": '-l',
             "long_name": "--log",
             "required": False,
-            "help": "Export log"
+            "help": "Export log as CSV"
         },
+        {
+            "short_name": '-m',
+            "long_name": '--merge',
+            "required": False,
+            "help": "Merge both folders in one"
+        }
     ])
     args = a_parser.get_args()
 
@@ -62,6 +69,9 @@ if __name__ == "__main__":
     #Check if we need to export logs
     if "log" in args:
         LogUtils(return_hashes).export(args['log'])
+
+    if "merge" in args:
+        MergeUtils([args["folder1"], args["folder2"]], return_hashes).merge(args['merge'])
 
     #Check for missing images
     for (h, image_paths) in return_hashes.items():
