@@ -67,11 +67,11 @@ if __name__ == "__main__":
             proc.join()
 
     #Check if we need to export logs
-    if "log" in args:
+    if args['log']:
         LogUtils(return_hashes).export(args['log'])
 
-    if "merge" in args:
-        MergeUtils([args["folder1"], args["folder2"]], return_hashes).merge(args['merge'])
+    if args['merge']:
+        MergeUtils(return_hashes).merge(args['merge'])
 
     #Check for missing images
     for (h, image_paths) in return_hashes.items():
