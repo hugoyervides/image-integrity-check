@@ -17,7 +17,7 @@ class MergeUtils:
             #Check if we have an image
             if len(image_paths) > 0:
                 ext = os.path.splitext(image_paths[0])[-1]
-                target = destination_folder + '/' + self.prefix + str(counter) + ext
+                target = os.path.join(destination_folder, self.prefix + str(counter) + ext)
                 shutil.move(image_paths[0], target)
                 #Delete the duplicated images
                 for i in range(1, len(image_paths)):

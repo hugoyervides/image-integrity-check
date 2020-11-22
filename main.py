@@ -68,9 +68,11 @@ if __name__ == "__main__":
 
     #Check if we need to export logs
     if args['log']:
+        print("[INFO] Creating log!")
         LogUtils(return_hashes).export(args['log'])
 
     if args['merge']:
+        print("[INFO] Merging folders!")
         MergeUtils(return_hashes).merge(args['merge'])
 
     #Check for missing images
